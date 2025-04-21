@@ -14,7 +14,7 @@ const subscriptMap: Record<string, string> = {
   "9": "₉",
 
   a: "ₐ",
-  b: "₆",
+  b: "ᵦ",
   c: "꜀",
   d: "ₔ",
   e: "ₑ",
@@ -101,9 +101,8 @@ export default async function main(props: LaunchProps<{ arguments: Arguments }>)
     if (!text) {
       try {
         text = await getSelectedText();
-      } catch (_error) {
-        console.error("Failed to get selected text:", _error);
-        await showHUD("No text selected or provided");
+      } catch (error) {
+        await showFailureToast(error, { title: "Failed to get selected text" });
         return;
       }
     }
